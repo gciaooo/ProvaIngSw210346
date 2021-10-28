@@ -1,29 +1,45 @@
 package it.unical.provaIngSw;
-import org.joda.time.DateTimeFieldType;
+import java.util.ArrayList;
+
 import org.joda.time.LocalDateTime;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MyListUtilTest {
-	private static LocalDateTime currentTime;
 	
-	private MyListUtil listUtil;
+	private MyListUtil listUtil = new MyListUtil();
 	
 	@BeforeClass
 	public static void prepareAll() {
-		System.out.println("Inizio test: " + currentTime.get(DateTimeFieldType.dayOfMonth()) +
-				"-" + currentTime.get(DateTimeFieldType.monthOfYear()) + "-" + currentTime.get(DateTimeFieldType.year()));
+		LocalDateTime currentTime = new LocalDateTime();
+		System.out.println("Inizio test: " + currentTime.getDayOfMonth() +
+				"-" + currentTime.getMonthOfYear() + "-" + currentTime.getYear() +
+				"-" + currentTime.getHourOfDay() + ":" + currentTime.getMinuteOfHour() + 
+				":" + currentTime.getSecondOfMinute() + ":" + currentTime.getMillisOfSecond());
 	}
 	
 	@AfterClass
 	public static void afterAll() {
-		System.out.println("Inizio test: " + currentTime.get(DateTimeFieldType.dayOfMonth()) +
-				"-" + currentTime.get(DateTimeFieldType.monthOfYear()) + "-" + currentTime.get(DateTimeFieldType.year()));
+		LocalDateTime currentTime = new LocalDateTime();
+		System.out.println("Fine test: " + currentTime.getDayOfMonth() +
+				"-" + currentTime.getMonthOfYear() + "-" + currentTime.getYear() +
+				"-" + currentTime.getHourOfDay() + ":" + currentTime.getMinuteOfHour() + 
+				":" + currentTime.getSecondOfMinute() + ":" + currentTime.getMillisOfSecond());
 	}
 	
 	@Test
 	public void sortingWorks() {
+		ArrayList<Integer> l = new ArrayList<Integer>();
+		for (int i = 1000; i > 0; i--) {
+			l.add(i);
+		}
+		listUtil.sort(l, 0);
 		
+		l.clear();
+		for (int i = 0; i < 1000; i++) {
+			l.add(i);
+		}
+		listUtil.sort(l, 1);
 	}
 }
