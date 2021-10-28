@@ -1,4 +1,6 @@
 package it.unical.provaIngSw;
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 
 import org.joda.time.LocalDateTime;
@@ -27,19 +29,37 @@ public class MyListUtilTest {
 				"-" + currentTime.getHourOfDay() + ":" + currentTime.getMinuteOfHour() + 
 				":" + currentTime.getSecondOfMinute() + ":" + currentTime.getMillisOfSecond());
 	}
-	
 	@Test
 	public void sortingWorks() {
-		ArrayList<Integer> l = new ArrayList<Integer>();
-		for (int i = 1000; i > 0; i--) {
-			l.add(i);
+		ArrayList<Integer> l1 = new ArrayList<Integer>();
+		for (int i = 9; i > -1; i--) {
+			l1.add(i);
 		}
-		listUtil.sort(l, 0);
+		ArrayList<Integer> l2 = new ArrayList<Integer>();
+		for (int i = 0; i < 10; i++) {
+			l2.add(i);
+		}
+		assertEquals(l2, listUtil.sort(l1, 0));
 		
-		l.clear();
-		for (int i = 0; i < 1000; i++) {
-			l.add(i);
+		l1.clear();
+		for (int i = 9; i > -1; i--) {
+			l1.add(i);
 		}
-		listUtil.sort(l, 1);
+		
+		assertEquals(l1, listUtil.sort(l2, 1));
+	}
+	
+	@Test(timeout = 2000)
+	public void sortingTimeWorks() {
+		ArrayList<Integer> l1 = new ArrayList<Integer>();
+		for (int i = 999; i > -1; i--) {
+			l1.add(i);
+		}
+		ArrayList<Integer> l2 = new ArrayList<Integer>();
+		for (int i = 0; i < 1000; i++) {
+			l2.add(i);
+		}
+		listUtil.sort(l1, 0);
+		listUtil.sort(l2, 1);
 	}
 }
