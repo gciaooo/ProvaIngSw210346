@@ -49,17 +49,29 @@ public class MyListUtilTest {
 		assertEquals(l1, listUtil.sort(l2, 1));
 	}
 	
-	@Test(timeout = 2000)
+	@Test(timeout = 3000)
 	public void sortingTimeWorks() {
 		ArrayList<Integer> l1 = new ArrayList<Integer>();
-		for (int i = 999; i > -1; i--) {
+		for (int i = 9999; i > -1; i--) {
 			l1.add(i);
 		}
 		ArrayList<Integer> l2 = new ArrayList<Integer>();
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 10000; i++) {
 			l2.add(i);
 		}
 		listUtil.sort(l1, 0);
 		listUtil.sort(l2, 1);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void sortingNullWorks() {
+		ArrayList<Integer> l1 = null;
+		listUtil.sort(l1, 0);
+	}
+	
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void sortingEmptyWorks() {
+		ArrayList<Integer> l1 = new ArrayList<Integer>();
+		listUtil.sort(l1, 0);
 	}
 }
